@@ -20,7 +20,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
-      router.replace("/form")
+      //router.replace("/form")
     }
   }, [loaded]);
 
