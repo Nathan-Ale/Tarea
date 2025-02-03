@@ -14,8 +14,7 @@ return(
             headerShown: false,
         }}
         >
-            <Stack.Screen name="form" options={{title: "Formulario"}}/>
-        </Stack>
+            <Stack.Screen name="form" options={{title: "Formulario"}}/>        </Stack>
                 <StatusBar style="auto" />
         </ThemeProvider>
 );

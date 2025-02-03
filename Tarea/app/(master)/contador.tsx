@@ -1,44 +1,38 @@
 import { Text, View, Button} from 'react-native';
+
+import { HelloWave } from '@/components/HelloWave';
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
 import { useEffect, useState } from 'react';
 
-export default function ContadorScreen() {
-  const [logueado, setLogueado] = useState(false);
+export default function HomeScreen() {
   const [contador, setContador] = useState(0);
-  const [usuario, setUsuario] = useState({nombre: '', edad:0});
-
-
-  useEffect(() => {
-    if (logueado) {
-      setTimeout(() => {
-        setUsuario((prevUsuario) =>({...prevUsuario, edad:25}));
-      }, 2000)
-    }
-  }, [logueado])
+  const [mensaje, setMensaje] = useState<string>("");
 
   const incrementarContador = () => {
     setContador(contador + 1);
   }
 
-  const obtenerMensajeEdad = () => {
-    if (usuario.edad < 18) {
-      return "Eres menor de edad";
+  useEffect(() => {
+    if (contador % 5 === 0 && contador !== 0) {
+      setMensaje("¡Ha alcanzado un múltiplo de 5!");
     } else {
-      return "Eres mayor de edad"
+      setMensaje("");
     }
-  }
+  }, [contador]);
   
   return (
     <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
       {/* Uso de operador ternario para toma de decisiones */}
 
       {/* Actualizacion de estado usando operadores logicos y funcion del estado */}
-      {logueado ? <Text>Bienvenido</Text> : <Text>Inicia Sesion</Text>}
-      <Button title="Toggle" onPress={() => {
-        setLogueado(!logueado);
+      <Button title="Contador" onPress={() => {
         incrementarContador();
       }}/>
-      <Text>Cantidad de clicks: {contador} </Text>
-      <Text>{obtenerMensajeEdad()}</Text>
+      <Text>Contador incrementado hasta: {contador} </Text>
+      {mensaje !== "" && <Text>{mensaje}</Text>}
+      
     </View>
   );
 }
